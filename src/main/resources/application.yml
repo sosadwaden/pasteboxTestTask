@@ -1,3 +1,13 @@
 app:
   host: http://pastebox.api.ru
   public_list_size: 10
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pastebin
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update

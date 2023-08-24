@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PasteBoxTestTaskApplication {
+public class PastebinTestTaskApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PasteBoxTestTaskApplication.class, args);
+        SpringApplication.run(PastebinTestTaskApplication.class, args);
     }
 
 }

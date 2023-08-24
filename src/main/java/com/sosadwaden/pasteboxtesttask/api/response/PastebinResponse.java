@@ -1,12 +1,13 @@
 package com.sosadwaden.pasteboxtesttask.api.response;
 
-import com.sosadwaden.pasteboxtesttask.api.request.Status;
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
-public class PasteBoxResponse {
+public class PastebinResponse {
     private final String data;
     private final boolean isPublic;
 }

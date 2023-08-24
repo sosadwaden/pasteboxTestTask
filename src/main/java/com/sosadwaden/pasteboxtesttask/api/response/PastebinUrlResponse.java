@@ -1,10 +1,12 @@
 package com.sosadwaden.pasteboxtesttask.api.response;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
-public class PasteBoxUrlResponse {
+public class PastebinUrlResponse {
     private final String url;
 }
