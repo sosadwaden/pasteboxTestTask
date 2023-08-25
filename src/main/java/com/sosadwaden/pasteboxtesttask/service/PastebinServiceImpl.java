@@ -29,18 +29,18 @@ public class PastebinServiceImpl implements PastebinService {
     private final PastebinRepository repository;
 
     @Override
-    public PastebinResponse getPasteBoxByHash(String hash) {
+    public PastebinResponse findPasteByHash(String hash) {
         PastebinEntity entity = repository.findByHash(hash);
 
         if (entity == null) {
-            throw new EntityNotFoundException("PasteBox not found with hash = " + hash);
+            throw new EntityNotFoundException("Paste not found with hash = " + hash);
         }
 
         return new PastebinResponse(entity.getData(), entity.isPublic());
     }
 
     @Override
-    public List<PastebinResponse> getFirstPublicPasteBoxes() {
+    public List<PastebinResponse> findFirstPublicPastes() {
 
         PageRequest pageRequest = PageRequest.of(0, publicListSize);
 
@@ -53,20 +53,21 @@ public class PastebinServiceImpl implements PastebinService {
     @Override
     public PastebinUrlResponse create(PastebinRequest request) {
 
-        int hashInt = Base62.decode(request.getData());
-        String hashHex = Integer.toHexString(hashInt);
+        PastebinEntity entity = new PastebinEntity();
+
         String data = request.getData();
         boolean isPublic = request.getStatus() == Status.PUBLIC;
-        System.out.println(request.getStatus());
-        System.out.println(isPublic);
         LocalDateTime lifetime = LocalDateTime.now().plusSeconds(request.getExpirationTimeSeconds());
 
-        PastebinEntity entity = new PastebinEntity();
         entity.setData(data);
-        entity.setId(hashInt);
-        entity.setHash(hashHex);
         entity.setPublic(isPublic);
         entity.setLifetime(lifetime);
+
+        repository.save(entity);
+        int id = entity.getId();
+
+        String hash = Base62.encode(id);
+        entity.setHash(hash);
 
         repository.save(entity);
 

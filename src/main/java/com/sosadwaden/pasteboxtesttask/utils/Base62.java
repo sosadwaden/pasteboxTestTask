@@ -2,6 +2,9 @@ package com.sosadwaden.pasteboxtesttask.utils;
 
 import com.sosadwaden.pasteboxtesttask.exception.Base62Exception;
 
+/**
+ * Класс для преобразования из/в 62 СС.
+ */
 public class Base62 {
 
     private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -21,7 +24,7 @@ public class Base62 {
         StringBuilder encodedString = new StringBuilder();
 
         while (input != 0) {
-            encodedString.append(ALPHABET.charAt((int) (input % BASE)));
+            encodedString.append(ALPHABET.charAt(input % BASE));
             input /= BASE;
         }
 

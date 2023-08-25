@@ -7,9 +7,10 @@ import com.sosadwaden.pasteboxtesttask.api.request.PastebinRequest;
 import java.util.List;
 
 public interface PastebinService {
-    PastebinResponse getPasteBoxByHash(String hash);
 
-    List<PastebinResponse> getFirstPublicPasteBoxes();
+    PastebinResponse findPasteByHash(String hash);
+
+    List<PastebinResponse> findFirstPublicPastes();
 
     PastebinUrlResponse create(PastebinRequest request);
 }

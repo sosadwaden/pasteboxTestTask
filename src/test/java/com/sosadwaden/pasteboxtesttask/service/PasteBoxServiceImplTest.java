@@ -1,4 +1,4 @@
-package com.sosadwaden.pasteboxtesttask;
+package com.sosadwaden.pasteboxtesttask.service;
 
 import com.sosadwaden.pasteboxtesttask.api.response.PastebinResponse;
 import com.sosadwaden.pasteboxtesttask.entity.PastebinEntity;
@@ -27,7 +27,7 @@ public class PasteBoxServiceImplTest {
     @Test
     public void notExistHash() {
         when(repository.findByHash(anyString())).thenThrow(EntityNotFoundException.class);
-        assertThrows(EntityNotFoundException.class, () -> service.getPasteBoxByHash("fsdfsg"));
+        assertThrows(EntityNotFoundException.class, () -> service.findPasteByHash("fsdfsg"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class PasteBoxServiceImplTest {
         when(repository.findByHash("1")).thenReturn(entity);
 
         PastebinResponse excepted = new PastebinResponse("11", true);
-        PastebinResponse actual = service.getPasteBoxByHash("1");
+        PastebinResponse actual = service.findPasteByHash("1");
 
         assertEquals(excepted, actual);
     }
